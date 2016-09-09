@@ -7,6 +7,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css"
           integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
@@ -21,21 +22,29 @@
     </nav>
 
     <!-- Main container content -->
-    <div class="container">
+    <div class="grid container">
         <br/>
-        <h3>New Dialog Tree:</h3>
-        <div class="container col-lg-6 col-md-8 col-sm-8 col-xsm-8">
-            <br/>
+        <h3 id="dialog-title" class="row col-lg-12 col-md-12 col-sm-12">New Dialog</h3>   <!-- Title of the dialog -->
+
+        <!-- Input group to handle the creation -->
+        <div class="row col-lg-6 col-md-6 col-sm-12 spaced" id="init-container">
             <div class="input-group">
-                <!-- Initialization of the dialog tree starts with the name -->
-                <input type="text" class="form-control" id="title">
-                <span class="input-group-btn" id="creation-button">
-                    <button id="new-button" class="btn btn-secondary" data-container="body" data-toggle="popover"
-                            data-content="Invalid Name" onclick="create()">Create</button>
+                <input type="text" placeholder="Dialog Name" class="form-control" id="new-dialog-name">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" onclick="create()">Create</button>
                 </span>
             </div>
         </div>
+
+        <div class="row col-lg-12 col-md-12 col-sm-12 spaced" id="tree-outer-container">
+            <div class="col-lg-6 col-md-6 col-sm-12" id="tree-inner-container">
+
+            </div>
+        </div>
+
+
     </div>
+
 
 </div>
 
