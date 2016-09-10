@@ -1,11 +1,6 @@
 var question_nodes = [];
 var text_nodes = [];
-
-
-// Enable popover affect from Bootstrap
-$(function () {
-    $('[data-toggle="popover"]').popover()
-});
+var text_node_count = 0;
 
 /**
  * Initialization function. Will get the name of the dialog tree and start the creation process
@@ -23,10 +18,11 @@ var create = function () {
         // Create the buttons to add text or questions
         var add_buttons = "" +
             "<div class='btn-group btn-group-sm spaced'>" +
-            "   <button type='button' class='btn btn-primary' onclick='create_text_node(\"\")'>New Text</button>" +
+            "   <button type='button' class='btn btn-primary' onclick='new_text_node(null)'>New Text</button>" +
             "   <button type='button' class='btn btn-primary'>New Question</button>" +
             "</div>";
 
+        //Replace the add_buttons
         $("#tree-outer-container").html(add_buttons);
 
         // Set the title
@@ -36,21 +32,33 @@ var create = function () {
     }
 };
 
-var create_text_node = function (prev) {
-    // Create a new text input that has information about the previous and current
-    // TODO: Add more information and a unique ID for the user to reference
-    var new_text_node = "" +
-        "<div class='input-group spaced'>" +
-        "   <span class='input-group-addon'>T</span> " +
-        "   <input type='text' class='form-control' placeholder='Text' aria-describedby='sizing-addon2'>" +
-        "   <span class='input-group-btn'>" +
-        "       <button type='button' class='btn btn-secondary'>+Q</button>" +
-        "       <button type='button' class='btn btn-secondary'>+T</button>" +
-        "   </span>" +
-        "</div>";
 
-    // Replace the new buttons with the new text
-    $("#tree-outer-container").html(new_text_node);
+/**
+ * Creates a new text node
+ *
+ * @param prev_index
+ */
+var new_text_node = function (prev_index) {
+
+    // Increment the total number of text_nodes
+    text_node_count += 1;
+
+    // Check if first node or not
+    var prev_id = 0;
+    if (prev_index != null) {
+        // Not first node so collect previous node information
+        var prev_node = text_nodes[prev_index];
+        prev_id = prev_node.id;
+
+        // Disable the new buttons on the previous node
+        prev_node.disable_buttons();
+    }
+
+    // Push the new node to the global array
+    var new_node = new TextNode(text_node_count, prev_id, "", text_nodes.length);
+    text_nodes.push(new_node);
+
+    // Call the create function to add the HTML
+    new_node.create();
+
 };
-
-
