@@ -36,5 +36,51 @@ DialogTree.prototype.newNode = function (prev, type) {
 
 };
 
+
+/**
+ * Function to save all to JSON format
+ */
+DialogTree.prototype.saveAll = function () {
+
+    // Loop through the tree and find all the "next" variables for better tracking
+    for (var outterNode in this.nodes) {
+        var searchID = outterNode.id;
+        var isQuestion = false;
+
+        // Handle all possible answers in an array
+        if (outterNode.type === "Q") {
+            isQuestion = true;
+            var allAnswers = [];
+        }
+
+        var found = false;
+
+        for (var innerNode in this.nodes) {
+            if (innerNode.prevNode === searchID) {
+                found = true;
+                if (isQuestion) {
+                    allAnswers.push(innerNode.id);
+                }
+                else {
+                    outterNode.setNextNode(innerNode.id);
+                }
+            }
+        }
+
+        if (isQuestion) {
+            outterNode.setNextNode(allAnswers);
+        }
+
+    }
+
+    var finalOutput = {
+        "title": this.title,
+        "tree": this.nodes
+    };
+
+    console.log(JSON.stringify(finalOutput));
+
+};
+
 dialogTree = new DialogTree();
 

@@ -11,6 +11,7 @@ var Node = function (id, prevNode, type) {
     this.prevNode = prevNode;
     this.type = type;
     this.text = "";
+    this.nextNode = null;
 
     this.parentContainer = $("#tree-outer-container")
 };
@@ -49,4 +50,8 @@ Node.prototype.update = function () {
  */
 Node.prototype.disableAddButtons = function () {
     $(".new-button-" + this.id).prop("disabled", true);
+};
+
+Node.prototype.setNextNode = function (value) {
+    this.nextNode = value;
 };
