@@ -7,13 +7,14 @@
  * @constructor
  */
 var Node = function (id, prevNode, type) {
-    this.id = id;
-    this.prevNode = prevNode;
-    this.type = type;
-    this.text = "";
-    this.nextNode = null;
+    this.id                 = id;
+    this.prevNode           = prevNode;
+    this.nextNode           = null;
+    this.type               = type;
+    this.text               = "";
 
-    this.parentContainer = $("#tree-outer-container")
+
+    this.parentContainer    = $("#tree-outer-container")
 };
 
 /**
@@ -27,7 +28,7 @@ Node.prototype.create = function () {
         "   <span class='input-group-addon'>" + this.prevNode + "</span> " +
         "   <span class='input-group-addon'>" + this.id + "</span> " +
         "   <span class='input-group-addon'>" + this.type + "</span> " +
-        "   <input type='text' class='form-control' placeholder='Text' aria-describedby='sizing-addon2'>" +
+        "   <input type='text' class='form-control' placeholder='Text' id='node-"+ this.id +"-text' aria-describedby='sizing-addon2'>" +
         "   <span class='input-group-btn'>" +
         "       <button type='button' class='btn btn-secondary new-button-" + this.id + " +' onclick='dialogTree.newNode(" + this.id + ", \"Q\")'>+Q</button>" +
         "       <button type='button' class='btn btn-secondary new-button-" + this.id + " +' onclick='dialogTree.newNode(" + this.id + ", \"T\")'>+T</button>" +
@@ -41,17 +42,102 @@ Node.prototype.create = function () {
 /**
  * Handles the updating of the nodes
  */
-Node.prototype.update = function () {
+Node.prototype.update = function ()
+{
 
 };
 
 /**
  * Disables the buttons associated with the Node layout
  */
-Node.prototype.disableAddButtons = function () {
+Node.prototype.disableAddButtons = function ()
+{
     $(".new-button-" + this.id).prop("disabled", true);
 };
 
-Node.prototype.setNextNode = function (value) {
-    this.nextNode = value;
+/**
+ * Sets the text to that which is stored within the text input associated with the node
+ */
+Node.prototype.setTextFromForm = function ()
+{
+    var text = $("#node-" + this.id + "-text");
+    this.text = text.val();
 };
+
+/**
+ *
+ * @param node The previous node
+ */
+Node.prototype.setPrevNode = function (node)
+{
+    this.PrevNode = node;
+};
+
+/**
+ *
+ * @param node The next node(s)
+ */
+Node.prototype.setNextNode = function (node)
+{
+    this.nextNode = node;
+};
+
+/**
+ *
+ * @param text The text of the question node
+ */
+Node.prototype.setText = function (text)
+{
+    this.text = text;
+};
+
+/**
+ * ACCESSORS
+ */
+
+/**
+ *
+ * @returns {*} The ID of the node
+ */
+Node.prototype.getID = function()
+{
+    return this.id;
+};
+
+
+/**
+ *
+ * @returns {*} The type of node ('Q' or 'T')
+ */
+Node.prototype.getType = function()
+{
+    return this.type;
+};
+
+/**
+ *
+ * @returns {*} The previous parent node
+ */
+Node.prototype.getPrevNode = function ()
+{
+    return this.prevNode;
+};
+
+/**
+ *
+ * @returns {*|null} The next node
+ */
+Node.prototype.getNextNode = function ()
+{
+    return this.nextNode;
+};
+
+/**
+ *
+ * @returns {JQuery|any|*|string} The question associated with the node
+ */
+Node.prototype.getText = function ()
+{
+    return this.text;
+};
+
