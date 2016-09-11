@@ -5,7 +5,13 @@ Dialog tree creator web interface allows for creating simply dialog trees and ex
 - Question Nodes (Question dialog with multiple answers)
 
 # Usage
-Dialog tree is currently in the middle of being developed and as such cannot be used at the current time.
+1. Download the latest release and open index.html
+2. Enter a title for your dialog tree
+3. Add either a question or text
+4. An input will show up with the Parent ID on the left and the current ID following. Add required information until dialog tree is complete
+5. Click "Save all" and a dialog box should show up. Copy and past the included text into whatever text editor and save it as a JSON file
+
+
 
 # Progress and plans
-Check out the [Trello](https://trello.com/b/Hk097Lpp/dialog-tree-creator) page here and add whatever you want
+Check out the [Trello](https://trello.com/b/Hk097Lpp/dialog-tree-creator) page here and keep up with progress
