@@ -25,8 +25,10 @@ Node.prototype.create = function () {
     // Create a basic HTML layout for the new Node
     var newNode = "" +
         "<div class='input-group spaced' id='node-" + this.id + "'>" +
-        "   <span class='input-group-addon'>" + this.prevNode + "</span> " +
-        "   <span class='input-group-addon'>" + this.id + "</span> " +
+        "   <div class='input-group-btn'>" +
+        "       <button type='button' class='btn btn-danger'> ID: " + this.id + "</button>" +
+        "       <button type='button' class='btn btn-primary'> PREV: " + this.prevNode + "</button>" +
+        "   </div>" +
         "   <span class='input-group-addon'>" + this.type + "</span> " +
         "   <input type='text' class='form-control' placeholder='Text' id='node-"+ this.id +"-text' aria-describedby='sizing-addon2'>" +
         "   <span class='input-group-btn'>" +

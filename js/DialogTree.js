@@ -26,6 +26,16 @@ DialogTree.prototype.create = function () {
 };
 
 /**
+ * Resets the current status of the dialog tree
+ */
+DialogTree.prototype.reset = function () {
+
+    this.nodes = [];
+    this.create();
+
+};
+
+/**
  * Creates a new Node
  *
  * @param prev  The parent node
