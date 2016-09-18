@@ -1,5 +1,6 @@
 var DialogTree = function () {
     this.nodes = [];
+    this.title = "";
 };
 
 /**
@@ -8,8 +9,8 @@ var DialogTree = function () {
 DialogTree.prototype.create = function () {
 
     // Ensure the title isn't null before beginning
-    var title = $("#new-dialog-name").val();
-    if (title === "") {
+    this.title = $("#new-dialog-name").val();
+    if (this.title === "") {
         // Display error message
     }
     else {
@@ -112,10 +113,25 @@ DialogTree.prototype.saveAll = function () {
 
     console.log(finalOutput);   // For debugging
 
-    // File I/O is illegal in Javascript so just have plain text in prompt
-    // TODO: improve this method
-    prompt("Save as a .json file", JSON.stringify(finalOutput));
+    // File I/O is illegal in Javascript so just have plain text in new window
+    this.showJSON(finalOutput);
 
+};
+
+DialogTree.prototype.showJSON = function(data)
+{
+    var jsonData = JSON.stringify(data, null, 4);
+    var newWindow = window.open();
+    newWindow.document.open();
+    newWindow.document.write("" +
+        "<html>" +
+        "   <head>" +
+        "       <title>Dialog Tree | " +  data.title + "</title>" +
+        "   </head>" +
+        "   <body>" +
+        "       <pre>" + jsonData + "</pre>" +
+        "   </body>" +
+        "</html>");
 };
 
 dialogTree = new DialogTree();
