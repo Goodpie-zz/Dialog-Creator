@@ -13,7 +13,6 @@ var Node = function (id, prevNode, type) {
     this.type               = type;
     this.text               = "";
 
-
     this.parentContainer    = $("#tree-outer-container")
 };
 
@@ -26,8 +25,8 @@ Node.prototype.create = function () {
     var newNode = "" +
         "<div class='input-group spaced' id='node-" + this.id + "'>" +
         "   <div class='input-group-btn'>" +
-        "       <button type='button' class='btn btn-danger'> ID: " + this.id + "</button>" +
-        "       <button type='button' class='btn btn-primary'> PREV: " + this.prevNode + "</button>" +
+        "       <button type='button' class='btn btn-danger' onclick='dialogTree.findNode(" + this.id +")'> ID: " + this.id + "</button>" +
+        "       <button type='button' class='btn btn-primary' onclick='dialogTree.findNode(" + this.prevNode +")'> PREV: " + this.prevNode + "</button>" +
         "   </div>" +
         "   <span class='input-group-addon'>" + this.type + "</span> " +
         "   <input type='text' class='form-control' placeholder='Text' id='node-"+ this.id +"-text' aria-describedby='sizing-addon2'>" +

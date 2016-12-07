@@ -118,6 +118,11 @@ DialogTree.prototype.saveAll = function () {
 
 };
 
+/**
+ * Outputs JSON to new window ready to be copied and pasted
+ *
+ * @param data  JSON data to be output
+ */
 DialogTree.prototype.showJSON = function(data)
 {
     var jsonData = JSON.stringify(data, null, 4);
@@ -132,6 +137,16 @@ DialogTree.prototype.showJSON = function(data)
         "       <pre>" + jsonData + "</pre>" +
         "   </body>" +
         "</html>");
+};
+
+/**
+ * Focuses the textbox element of give node id
+ *
+ * @param searchNode    node id to search for
+ */
+DialogTree.prototype.findNode = function(searchNode)
+{
+    document.getElementById("node-" + searchNode + "-text").focus();
 };
 
 dialogTree = new DialogTree();
